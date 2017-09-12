@@ -1,18 +1,8 @@
 /*
 	Ripped from Sonic Mania
-	CRT-Sharp
-	by luluco250 / Matsilagi
 */
 
 #include "ReShade.fxh"
-
-uniform int WindowSize <
-	ui_label = "Window Size [CRT-Sharp]";
-	ui_type = "drag";
-	ui_min = "1";
-	ui_max = "2";
-	ui_step = "1";
-> = 1;
 
 float4 cmp(float4 src0, float4 src1, float4 src2) {
 	return float4(
@@ -30,15 +20,8 @@ void PS_CRT_Yeetron(
 ) {
 	//Declare parameters
 	//Window Size
-	int2 i2Resolution = int2(0,0);
-	float fDownScale = float(1.0);
-	if (WindowSize == 2){
-		i2Resolution = int2(848,480);
-		fDownScale = 0.002;
-	} else {
-		i2Resolution = int2(424,240);
-		fDownScale = 0.001;
-	}
+	int2 i2Resolution = int2(424,240);
+	float fDownScale = 0.005;
 	//pixelSize
 	float4 c0 = ReShade::ScreenSize.xyyy / float4(ReShade::AspectRatio, 1, 1, 1);
 	//textureSize

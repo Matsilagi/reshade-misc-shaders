@@ -1,18 +1,9 @@
 /*
 	Ripped from Sonic Mania
 	CRT-Soft
-	by luluco250 / Matsilagi
 */
 
 #include "ReShade.fxh"
-
-uniform int WindowSize <
-	ui_label = "Window Size [CRT-Soft]";
-	ui_type = "drag";
-	ui_min = "1";
-	ui_max = "2";
-	ui_step = "1";
-> = 1;
 
 void PS_CRT_Yee64(
 	float4 pos : SV_POSITION,
@@ -21,17 +12,10 @@ void PS_CRT_Yee64(
 ) {
 	//Declare parameters
 	//Window Size
-	int2 i2Resolution = int2(0,0);
-	float fDownScale = float(1.0);
-	if (WindowSize == 2){
-		i2Resolution = int2(848,480);
-		fDownScale = 0.002;
-	} else {
-		i2Resolution = int2(424,240);
-		fDownScale = 0.001;
-	}
+	int2 i2Resolution = int2(424,240);
+	float fDownScale = 0.005;
 	//pixelSize
-	float4 c0 = ReShade::ScreenSize.xyyy / float4(ReShade::AspectRatio, 1, 1, 1);
+	float4 c0 = ReShade::ScreenSize.xyyy / float4(ReShade::AspectRatio, 0.5, 1, 1);
 	//textureSize
 	float4 c1 = i2Resolution.xyyy / fDownScale;
 	//viewSize
